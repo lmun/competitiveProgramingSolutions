@@ -1,0 +1,14 @@
+a = int(input())
+resultado = [0] * a
+for i in range(a):
+	mapa = {}
+	nums = [int(input()) for _ in range(int(input()))]
+	resp = 0
+	ultimo = -1
+	for j in range(len(nums)):
+		este = nums[j]
+		ultimo = max(mapa.get(este, -1), ultimo)
+		resp = max(j - ultimo, resp)
+		mapa[este] = j
+	resultado[i] = str(resp)
+print("\n".join(resultado))
