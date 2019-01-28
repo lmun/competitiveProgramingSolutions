@@ -25,35 +25,35 @@ int main()
 {
 	std::ios::sync_with_stdio(false);
 	int T;
-	while(cin>>T){
-		if(T==0){
+	while (cin >> T) {
+		if (T == 0) {
 			break;
 		}
-	std::vector<int> v(T);
-	std::vector<int> res(T,0);
-	for (int i = 0; i < T; ++i)
-	{
-		
-		cin >> v[i];
-	}
-	int r=T;
-	int sum=0;
-	for (int i = 2*T; i >= 0; --i)
-	{
-		sum+=v[i%T];
-		if(v[i%T]<0 || sum < 0){
-			if (res[i%T]>=0)
-			{
-				res[i%T]=-1;
-				r--;
-			}
-			
-		}if(v[i%T]<0 && sum > v[i%T]){
-			sum=v[i%T];
-		}
+		std::vector<int> v(T);
+		std::vector<int> res(T, 0);
+		for (int i = 0; i < T; ++i)
+		{
 
+			cin >> v[i];
+		}
+		int r = T;
+		int sum = 0;
+		for (int i = 2 * T; i >= 0; --i)
+		{
+			sum += v[i % T];
+			if (v[i % T] < 0 || sum < 0) {
+				if (res[i % T] >= 0)
+				{
+					res[i % T] = -1;
+					r--;
+				}
+
+			} if (v[i % T] < 0 && sum > v[i % T]) {
+				sum = v[i % T];
+			}
+
+		}
+		cout << r << endl;
 	}
-	cout << r << endl;
-}
 	return 0;
 }
