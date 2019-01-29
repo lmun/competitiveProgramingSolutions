@@ -1,3 +1,4 @@
+# Same as uva 11995
 from heapq import heappop, heappush
 while True:
 	try:
