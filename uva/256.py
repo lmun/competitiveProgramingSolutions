@@ -1,13 +1,16 @@
+def isquirk(n, mo):
+	ab = n%mo + n//mo
+	return ab*ab==n
+
+
+resp = [[0]]
+for j in range(1,5):
+	mo = 10**j
+	resp.append(['{{:0>{}}}'.format(2*j).format(i*i) for i in range(10**j) if isquirk(i*i,mo)])
 while True:
 	try:
-		def isquirk(n):
-			ab = n%mo + n//mo
-			return ab*ab==n
 		n = int(input())
-		mo = 10**(n//2)
-		for i in range(2*mo):
-			if i*i < 10**n and isquirk(i*i):
-				print('{{:0>{}}}'.format(n).format(i*i))
+		print('\n'.join(resp[n//2]))
 	except Exception as e:
 		#print(e)
 		break
