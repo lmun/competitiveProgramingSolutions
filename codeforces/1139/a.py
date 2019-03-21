@@ -1,7 +1,2 @@
-n=int(input())
-s = input().strip()
-res = 0
-for i, c in enumerate(s):
-	if ord(c)%2 == 0:
-		res += 1+i
-print(res)
+input()
+print(sum(i if ord(c)%2 == 0 else 0 for i,c in enumerate(input().strip(), 1)))
