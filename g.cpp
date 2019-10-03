@@ -23,7 +23,9 @@
 #define f first
 #define s second
 #define LSOne(S) ((S) & -(S))
-
+/*
+* Pashmak and Parmida's problem
+*/
 
 using namespace std;
 
@@ -63,22 +65,59 @@ int main()
 	cin >> n;
 	vi nums(n,0);
 	vi vals(n,0);
+  vi jene(n,0);
 	map<int, int> mapa;
-    map<int, int> mapo;
+  map<int, int> mapo;
+  map<int, int> total;
+  map<int, int> popo;
 	for (int i = 0; i < n; ++i)
 	{
 		cin >> nums[i];
-		val[i] = nums[i];
+		vals[i] = nums[i];
 	}
-	sort(all(nums));
-    int count = 1;
-    for(auto aa:vals){
-        if(mapa.count(aa)==0){
-            count++;
-            mapa[aa] = count;
-            mapo[count] = aa;
-        }
+	sort(all(vals));
+  int count = 1;
+  for(auto aa:vals){
+      if(mapa.count(aa)==0){
+          count++;
+          mapa[aa] = count;
+          mapo[count] = aa;
+      }
+  }
+  for (int i = n-1; i >=0; i--)
+  {
+    if(total.count(nums[i])==0){
+      jene[i] = 1;
+      total[nums[i]] = 1;
+    }else{
+      total[nums[i]]+=1;
+      jene[i] = total[nums[i]];
     }
-	FenwickTree fen = FenwickTree();
+  }
+
+  for (int i = 0; i < n; i++)
+  {
+    cout << jene[i] << ';';
+  }
+  
+  cout << endl;
+	FenwickTree fen = FenwickTree(n+10);
+  ll res = 0;
+  for (int i = 0; i < n; i++)
+  {
+    int tinu = mapa[nums[i]];
+    if(popo.count(tinu)==0) {
+      popo[tinu]=1;
+      fen.update(1,1);
+    } else {
+      fen.update(popo[tinu], -1);
+      popo[tinu]+=1;
+      fen.update(popo[tinu],1);
+    }
+    cout << i << 'o' << fen.rsq(10) << 'k' << endl;
+    // cout << mapa[nums[i]] << '.' << jene[i] << endl;
+  }
+  
+  cout << 'a' << endl;
 	return 0;
 }
