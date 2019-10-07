@@ -67,23 +67,22 @@ int main()
 		cin >> n;
 		FenwickTree simple = FenwickTree(1000100);
 		FenwickTree doble = FenwickTree(1000100);
-		FenwickTree simpleb = FenwickTree(1000100);
-		FenwickTree dobleb = FenwickTree(1000100);
+		FenwickTree simpleBackwards = FenwickTree(1000100);
+		FenwickTree dobleBackwards = FenwickTree(1000100);
 		ll res = 0;
 		for (int i = 0; i < n; ++i)
 		{
-			// cin >> players[i];
-			int aa;
-			cin >> aa;
-			int bb = 1000050-aa;
-			doble.update(aa, simple.rsq(aa-1));
-			simple.update(aa, 1);
-			res += doble.rsq(aa-1);
+			int num;
+			cin >> num;
+			int reverse = 1000050-num;
+			doble.update(num, simple.rsq(num-1));
+			simple.update(num, 1);
+			res += doble.rsq(num-1);
 
 
-			dobleb.update(bb, simpleb.rsq(bb-1));
-			simpleb.update(bb, 1);
-			res += dobleb.rsq(bb-1);
+			dobleBackwards.update(reverse, simpleBackwards.rsq(reverse-1));
+			simpleBackwards.update(reverse, 1);
+			res += dobleBackwards.rsq(reverse-1);
 		}
 		cout << res << endl;
 	}
